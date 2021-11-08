@@ -6,12 +6,7 @@ const app = express()
 app.listen(8080)
 
 // Middleware
-
-// app.use('/posts', ()=> {
-//   console.log('This is a middleware running');
-// })
-
-app.use('*', ()=> {
+app.use('/posts', ()=> {
   console.log('This is a middleware running');
 })
 
