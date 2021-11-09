@@ -1,14 +1,20 @@
 const express =  require('express');
-const mongoose =  require('mongoose')
+const mongoose =  require('mongoose');
+const bodyParser =  require('body-parser');
 const app = express()
 
 require('dotenv/config')
 
+// Server config
+app.listen(8080)
+
+//Body Parser for all Routes
+app.use(bodyParser.json())
+
+//Routes
 const postsRouter = require('./routes/posts') // Post Router
 const getsRouter = require('./routes/gets') // Get Router
 
-// Server config
-app.listen(8080)
 
 // Connect to DB
 mongoose.connect(
