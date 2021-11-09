@@ -2,6 +2,9 @@ const express =  require('express');
 const mongoose =  require('mongoose')
 const app = express()
 
+const postsRouter = require('./routes/posts') // Post Router
+const getsRouter = require('./routes/gets') // Get Router
+
 // Server config
 app.listen(8080)
 
@@ -9,6 +12,10 @@ app.listen(8080)
 mongoose.connect(`${process.env.DB_CONNECTION}`, ()=> {
   console.log('Connected to DB');
 })
+
+// Middleware
+app.use('/posts', postsRouter)
+app.use('/gets', getsRouter)
 
 // Routes
 app.get('/', (req, res) => {
