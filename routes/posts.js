@@ -25,7 +25,7 @@ router.get('/:id' , async(req, res) => {
   }
 })
 
-// POST a POSTS
+// POST a POST
 router.post('/', async (req, res) => {
   const post = new Post({
     user: {
@@ -64,5 +64,18 @@ router.delete('/:id', async (req,res) => {
   }
 })
 
-// 
+// UPDATE a specific POST
+router.patch('/:id', async (req, res) => {
+  try {
+    const updatePost = await Post.updateOne({ _id: req.params.id }, {
+      $set : {
+        title: req.body.title
+      }
+    })
+    res.json(updatePost)
+  } catch (error) {
+    res.json({ message: error })
+  }
+})
+
 module.exports = router
