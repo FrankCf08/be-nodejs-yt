@@ -2,6 +2,7 @@ const express = require('express');
 const Post = require('../models/Post');
 const router = express.Router();
 
+// Get all the POSTS
 router.get('/', async (req, res) => {
     try {
       const posts = await Post.find();
@@ -11,6 +12,20 @@ router.get('/', async (req, res) => {
     }
 })
 
+// GET an speficic POST
+// id: 618b326d1e7644de3f9d598b, 618b33bb6a2f4940a0cf0a88
+router.get('/:id' , async(req, res) => {
+  try {
+    // console.log(req.params.id);
+    // res.json({ id: req.params.id })
+    const postById = await Post.findById(req.params.id);
+    res.json(postById)
+  } catch (error) {
+    res.json({ message: error})
+  }
+})
+
+// SUbmit a POSTS
 router.post('/', async (req, res) => {
   console.log(req.body);
   const post = new Post({
