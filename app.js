@@ -1,7 +1,8 @@
 const express =  require('express');
 const mongoose =  require('mongoose');
 const bodyParser =  require('body-parser');
-const app = express()
+const cors = require('cors');
+const app = express();
 
 require('dotenv/config')
 
@@ -10,6 +11,9 @@ app.listen(8080)
 
 //Body Parser for all Routes
 app.use(bodyParser.json())
+
+// Enabling CORS for all routes
+app.use(cors())
 
 //Routes
 const postsRouter = require('./routes/posts') // Post Router
